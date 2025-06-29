@@ -420,46 +420,65 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    body {
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+    
     .screen h1 {
         font-size: 2rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .screen p {
         font-size: 1rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .game-button {
         padding: 12px 24px;
         font-size: 1rem;
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .birthday-title {
         font-size: 2.5rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .memory-cell {
         width: 60px;
         height: 60px;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .screen-content {
         padding: 1rem;
         margin: 1rem;
         max-width: 90%;
+        -webkit-overflow-scrolling: touch;
     }
     
     #reaction-button {
         width: 150px;
         height: 150px;
         font-size: 1.2rem;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .click-counter {
         font-size: 1.5rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .timer {
         font-size: 1.2rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .memory-info {
@@ -473,6 +492,7 @@ body {
         right: 10px;
         padding: 8px 12px;
         font-size: 0.9rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     #moving-button {
@@ -480,37 +500,52 @@ body {
         padding: 15px 30px;
         min-width: 150px;
         min-height: 60px;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        user-select: none;
     }
     
     .birthday-text {
         font-size: 1.3rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-cake {
         font-size: 4rem;
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Prevent zoom on input focus in Chrome */
+    input, select, textarea {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
     .screen h1 {
         font-size: 1.5rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-title {
         font-size: 2rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-text {
         font-size: 1.2rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-cake {
         font-size: 3rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .memory-cell {
         width: 50px;
         height: 50px;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .memory-grid {
@@ -521,11 +556,13 @@ body {
         width: 120px;
         height: 120px;
         font-size: 1rem;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .game-button {
         padding: 10px 20px;
         font-size: 0.9rem;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .screen-content {
@@ -545,33 +582,97 @@ body {
 @media (max-width: 320px) {
     .screen h1 {
         font-size: 1.3rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-title {
         font-size: 1.8rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-text {
         font-size: 1rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .birthday-cake {
         font-size: 2.5rem;
+        -webkit-text-size-adjust: 100%;
     }
     
     .memory-cell {
         width: 45px;
         height: 45px;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     #reaction-button {
         width: 100px;
         height: 100px;
         font-size: 0.9rem;
+        min-height: 44px; /* iOS minimum touch target */
     }
     
     .game-button {
         padding: 8px 16px;
         font-size: 0.8rem;
+        min-height: 44px; /* iOS minimum touch target */
+    }
+}
+
+/* Chrome mobile optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .game-button {
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .memory-cell {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    #moving-button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Mobile Chrome viewport fixes */
+@media screen and (max-width: 768px) {
+    body {
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    .screen {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+    
+    #game-container {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+    
+    .game-button {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .memory-cell {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    #reaction-button {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    #moving-button {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
     }
 } 
