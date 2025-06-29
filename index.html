@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Adventure! 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Screen 1: Moving Button Challenge -->
+        <div id="screen-1" class="screen active">
+            <div class="screen-content">
+                <button id="moving-button" class="game-button">Click Me!</button>
+                <div class="progress-indicator">
+                    <span class="current">1</span>/5
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Quick Click Challenge -->
+        <div id="screen-2" class="screen">
+            <div class="screen-content">
+                <h1>⚡ Speed Clicker!</h1>
+                <p>Click the button 10 times as fast as you can!</p>
+                <div class="click-counter">
+                    <span id="click-count">0</span>/10
+                </div>
+                <button id="speed-button" class="game-button">Click Fast!</button>
+                <div class="progress-indicator">
+                    <span class="current">2</span>/5
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Reaction Game -->
+        <div id="screen-3" class="screen">
+            <div class="screen-content">
+                <h1>🎮 Reaction Time!</h1>
+                <p>Wait for the button to turn green, then click it!</p>
+                <div class="reaction-game">
+                    <button id="reaction-button" class="game-button waiting">Wait...</button>
+                    <div class="timer">Time: <span id="reaction-time">0.00</span>s</div>
+                </div>
+                <div class="progress-indicator">
+                    <span class="current">3</span>/5
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Memory Game -->
+        <div id="screen-4" class="screen">
+            <div class="screen-content">
+                <h1>🧠 Memory Test!</h1>
+                <p>Remember the pattern and repeat it!</p>
+                <div class="memory-game">
+                    <div class="memory-grid">
+                        <div class="memory-cell" data-index="0"></div>
+                        <div class="memory-cell" data-index="1"></div>
+                        <div class="memory-cell" data-index="2"></div>
+                        <div class="memory-cell" data-index="3"></div>
+                    </div>
+                    <div class="memory-info">
+                        <div class="level">Level: <span id="memory-level">1</span></div>
+                        <div class="score">Score: <span id="memory-score">0</span></div>
+                    </div>
+                </div>
+                <div class="progress-indicator">
+                    <span class="current">4</span>/5
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 5: Birthday Surprise -->
+        <div id="screen-5" class="screen">
+            <div class="screen-content birthday-content">
+                <div class="birthday-message">
+                    <h1 class="birthday-title">🎉 Happy Birthday To Me! 🎉</h1>
+                    <p class="birthday-text">June 29, 2025</p>
+                    <div class="birthday-cake">🎂</div>
+                    <button id="start-over" class="game-button">Start Over</button>
+                </div>
+                <div class="confetti-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

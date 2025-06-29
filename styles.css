@@ -1,0 +1,438 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+    height: 100vh;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Screen styles */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.screen.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.screen-content {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.screen h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+}
+
+.screen p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Button styles */
+.game-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ff5252, #ffd54f);
+}
+
+.game-button:active {
+    transform: translateY(-1px);
+}
+
+.game-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.game-button:hover::before {
+    left: 100%;
+}
+
+/* Progress indicator */
+.progress-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.current {
+    color: #ffd54f;
+    font-size: 1.3rem;
+}
+
+/* Screen 1: Moving Button */
+#screen-1 {
+    display: block !important;
+    align-items: unset !important;
+    justify-content: unset !important;
+}
+
+#screen-1 .screen-content {
+    text-align: left;
+    display: block;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0;
+    max-width: none;
+}
+
+#moving-button {
+    position: relative;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+    min-width: 200px;
+    min-height: 80px;
+    transition: none !important;
+    transform: none !important;
+}
+
+#moving-button:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(45deg, #ff6b6b, #feca57) !important;
+}
+
+#moving-button:active {
+    transform: none !important;
+}
+
+#moving-button::before {
+    display: none !important;
+}
+
+/* Screen 2: Speed Clicker */
+.click-counter {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #ffd54f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#speed-button {
+    animation: pulse 1s infinite;
+}
+
+/* Screen 3: Reaction Game */
+.reaction-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#reaction-button {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+#reaction-button.waiting {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    animation: pulse 1s infinite;
+}
+
+#reaction-button.ready {
+    background: linear-gradient(45deg, #4caf50, #66bb6a);
+    animation: none;
+    transform: scale(1.1);
+}
+
+#reaction-button.clicked {
+    background: linear-gradient(45deg, #2196f3, #42a5f5);
+    transform: scale(0.9);
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd54f;
+}
+
+/* Screen 4: Memory Game */
+.memory-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 1rem 0;
+}
+
+.memory-cell {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.memory-cell:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.memory-cell.active {
+    background: linear-gradient(45deg, #4caf50, #66bb6a);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+.memory-cell.flash {
+    background: linear-gradient(45deg, #ffd54f, #ffeb3b);
+    animation: flash 0.5s ease;
+}
+
+.memory-info {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Screen 5: Birthday Surprise */
+.birthday-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.birthday-message {
+    z-index: 10;
+    position: relative;
+}
+
+.birthday-title {
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite, bounce 2s infinite;
+    margin-bottom: 2rem;
+}
+
+.birthday-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease;
+}
+
+.birthday-cake {
+    font-size: 5rem;
+    margin: 2rem 0;
+    animation: bounce 1s infinite, rotate 10s linear infinite;
+}
+
+/* Confetti */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(2n) {
+    background: #feca57;
+    animation-delay: 0.5s;
+}
+
+.confetti:nth-child(3n) {
+    background: #48dbfb;
+    animation-delay: 1s;
+}
+
+.confetti:nth-child(4n) {
+    background: #ff9ff3;
+    animation-delay: 1.5s;
+}
+
+.confetti:nth-child(5n) {
+    background: #1dd1a1;
+    animation-delay: 2s;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .screen h1 {
+        font-size: 2rem;
+    }
+    
+    .screen p {
+        font-size: 1rem;
+    }
+    
+    .game-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    
+    .birthday-title {
+        font-size: 2.5rem;
+    }
+    
+    .memory-cell {
+        width: 60px;
+        height: 60px;
+    }
+} 
